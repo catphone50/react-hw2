@@ -1,23 +1,34 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import Greeting from "./components/Greeting.jsx";
+import ShoppingList from "./components/ShoppingList.jsx";
+import OrderStatus from "./components/OrderStatus.jsx";
 
 function App() {
+  const products = [
+    "Laptop",
+    "Smartphone",
+    "Tablet",
+    "Headphones",
+    "Smartwatch",
+  ];
+
+  const orders = [
+    { orderId: 123, status: "в пути" },
+    { orderId: 456, status: "доставлен" },
+    { orderId: 789, status: "отменен" },
+  ];
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Greeting name="Jon" />
+      <ShoppingList items={products} />
+      {orders.map((order) => (
+        <OrderStatus
+          key={order.orderId}
+          orderId={order.orderId}
+          status={order.status}
+        />
+      ))}
     </div>
   );
 }
